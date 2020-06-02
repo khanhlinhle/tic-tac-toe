@@ -14,13 +14,17 @@ export default class Board extends Component {
         }
 
         let timeWalk = this.props.lastTimeWalk;
-        let oldHistory = [...this.props.history];    // <~ ... là rã mảng để tạo mảng mới
+        let oldHistory = [...this.props.history];    // <~ lấy hết phần tử của mảng history để tạo thành mảng oldHistory
         if (timeWalk !== -1) {
             oldHistory = oldHistory.filter((his, index) => index <= timeWalk);
             timeWalk = -1;
         }
 
-        squaresFromApp[id] = this.props.isXNext ? "X " : "O";
+        squaresFromApp[id] = this.props.isXNext ?
+
+            <img className="img-player" src="https://media.tenor.com/images/7f24da60ef53d2bfebfb5a30ce56c36c/tenor.gif" />
+            :
+            <img className="img-player" src="https://media.tenor.com/images/4dd2a49e02243d13a4c293ff402f57df/tenor.gif" />;
 
         this.props.setTheState({
             lastTimeWalk: timeWalk,
@@ -32,10 +36,9 @@ export default class Board extends Component {
                     squares: [...squaresFromApp],
                     isXNext: !this.props.isXNext,
                 }
-            ],
+            ], // <~ lấy hết phần tử của mảng oldHistory để tạo thành mảng history mới đồng thời push thêm những giá trị mới (đằng sau dấu ,)
         })
     }
-
 
     calculateWinner = (squares) => {
         const lines = [
@@ -50,7 +53,7 @@ export default class Board extends Component {
         ];
         for (let i = 0; i < lines.length; i++) {
             const [a, b, c] = lines[i];
-            if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+            if (squares[a] && squares[b] && squares[c] && squares[a].src === squares[b].src && squares[a].src === squares[c].src) {
                 return squares[a];
             }
         }
@@ -61,9 +64,10 @@ export default class Board extends Component {
         const winner = this.calculateWinner(this.props.squares);
         let status = "";
         if (winner) {
-            status = "Winner: " + winner;
+            console.log(winner)
+            status = `I should: ${this.props.isXNext ? " Go to sleep " : " Go to work "}`;
         } else {
-            status = `The next player: ${this.props.isXNext ? "X" : "O"}`;
+            status = `What should I do  : ${this.props.isXNext ? " Go to work " : " Go to sleep "}`;
         }
         return (
             <div>
