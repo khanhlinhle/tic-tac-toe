@@ -4,7 +4,7 @@ import Square from './Square';
 export default class Board extends Component {
 
     renderSquare = (num) => {
-        return <Square id={num} boxClick={this.boxClick} value={this.props.squares[num]} />
+        return <Square key={num} id={num} boxClick={this.boxClick} value={this.props.squares[num]} />
     }
 
     boxClick = (id) => {
@@ -12,16 +12,30 @@ export default class Board extends Component {
         if (this.calculateWinner(squaresFromApp) || squaresFromApp[id]) {
             return;
         }
+
+        let timeWalk = this.props.lastTimeWalk;
+        let oldHistory = [...this.props.history];    // <~ ... là rã mảng để tạo mảng mới
+        if (timeWalk !== -1) {
+            oldHistory = oldHistory.filter((his, index) => index <= timeWalk);
+            timeWalk = -1;
+        }
+
         squaresFromApp[id] = this.props.isXNext ? "X " : "O";
+
         this.props.setTheState({
-            squares: squaresFromApp,
+            lastTimeWalk: timeWalk,
+            squares: [...squaresFromApp],
             isXNext: !this.props.isXNext,
-            history: [...this.props.history,{ // <~ ... là rã mảng để tạo mảng mới
-                squares: [...squaresFromApp],
-                isXNext: !this.props.isXNext,
-            }]
+            history: [
+                ...oldHistory,
+                {
+                    squares: [...squaresFromApp],
+                    isXNext: !this.props.isXNext,
+                }
+            ],
         })
     }
+
 
     calculateWinner = (squares) => {
         const lines = [
@@ -42,7 +56,6 @@ export default class Board extends Component {
         }
         return null;
     }
-
 
     render() {
         const winner = this.calculateWinner(this.props.squares);
