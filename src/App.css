@@ -46,6 +46,37 @@
   height: 200px;
 }
 
+.list-player {
+  margin-right: 100px;
+  left: 0;
+}
+
+.game-part {
+  display: flex;
+}
+
+.score-part {
+  margin-bottom: 20px;
+  font-size: 20px;
+  font-style: italic;
+  font-weight: bold;
+  border: 1px solid green;
+  border-radius: 10px;
+  background-color: darkgreen;
+  color: yellow;
+  padding: 10px;
+  width: 90px;
+}
+
+.status-part {
+  border: 1px solid green;
+  border-radius: 10px;
+  background-color: darkgreen;
+  color: yellow;
+  padding: 10px;
+  width: 500px;
+}
+
 @import url("https://fonts.googleapis.com/css?family=Sacramento&display=swap");
 
 h1 {
@@ -124,4 +155,32 @@ nav {
   text-shadow: 0 0 5px #ffa500, 0 0 15px #ffa500, 0 0 20px #ffa500, 0 0 40px #ffa500, 0 0 60px #ff0000, 0 0 10px #ff8d00, 0 0 98px #ff0000;
     color: #fff6a9;
   }
+}
+
+@import url(https://fonts.googleapis.com/css?family=Anonymous+Pro);
+
+.line-1{
+    position: relative;
+    width: 24em;
+    margin: 0 auto;
+    border-right: 2px solid rgba(255,255,255,.75);
+    font-size: 180%;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    transform: translateY(-50%);    
+}
+
+/* Animation */
+.anim-typewriter{
+  animation: typewriter 4s steps(44) 1s 1 normal both,
+             blinkTextCursor 500ms steps(44) infinite normal;
+}
+@keyframes typewriter{
+  from{width: 0;}
+  to{width: 24em;}
+}
+@keyframes blinkTextCursor{
+  from{border-right-color: rgba(255,255,255,.75);}
+  to{border-right-color: transparent;}
 }
