@@ -140,7 +140,7 @@ export default class Board extends Component {
                     }
                 </div>
                 <div>
-                    <h2 className="line-1 anim-typewriter">{status}</h2>
+                    <h2 className="blinking">{status}</h2>
                     <div className="score-part">Score: {this.state.score}</div>
                     <div className="square-row">
                         {this.renderSquare(0)}

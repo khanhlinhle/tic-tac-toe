@@ -48,10 +48,11 @@ export default class extends Component {
         </nav>
         <div className="App">
           {
-            this.state.isLogIn ? 
-            <div></div> 
-            :
+            this.state.isLogIn ?
+              <div></div>
+              :
               <FacebookLogin
+                className="login-button"
                 autoLoad={true}
                 appId="2670114303094325"
                 fields="name,email,picture"

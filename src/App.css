@@ -80,7 +80,7 @@
 @import url("https://fonts.googleapis.com/css?family=Sacramento&display=swap");
 
 h1 {
-  font-size: calc(20px + 9vh);
+  font-size: calc(20px + 5vh);
   line-height: calc(20px + 20vh);
 /*   text-shadow: 0 0 5px #f562ff, 0 0 15px #f562ff, 0 0 25px #f562ff,
     0 0 20px #f562ff, 0 0 30px #890092, 0 0 80px #890092, 0 0 80px #890092;
@@ -94,7 +94,7 @@ h1 {
 }
 
 nav {
-  height: 100px;
+  height: 50px;
   padding: 2vw;
   display: flex;
   justify-content: center;
@@ -157,30 +157,19 @@ nav {
   }
 }
 
-@import url(https://fonts.googleapis.com/css?family=Anonymous+Pro);
-
-.line-1{
-    position: relative;
-    width: 24em;
-    margin: 0 auto;
-    border-right: 2px solid rgba(255,255,255,.75);
-    font-size: 180%;
-    text-align: center;
-    white-space: nowrap;
-    overflow: hidden;
-    transform: translateY(-50%);    
+.blinking{
+  animation:blinkingText 1.2s infinite;
+  font-size: 25px;
+  text-align: center;
+  border: 1px solid darkslateblue;
+  background-color: darkslateblue;
+  padding: 10px;
+  border-radius: 10px;
 }
-
-/* Animation */
-.anim-typewriter{
-  animation: typewriter 4s steps(44) 1s 1 normal both,
-             blinkTextCursor 500ms steps(44) infinite normal;
-}
-@keyframes typewriter{
-  from{width: 0;}
-  to{width: 24em;}
-}
-@keyframes blinkTextCursor{
-  from{border-right-color: rgba(255,255,255,.75);}
-  to{border-right-color: transparent;}
+@keyframes blinkingText{
+  0%{     color: seashell;    }
+  49%{    color: seashell; }
+  60%{    color: transparent; }
+  99%{    color:transparent;  }
+  100%{   color: rgb(39, 39, 39);    }
 }
